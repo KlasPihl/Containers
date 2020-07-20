@@ -7,11 +7,11 @@ services:
     hostname: pihl-dns
     image: pihole/pihole:latest
     ports:
-      - "10.253.1.8:53:53/tcp"
-      - "10.253.1.8:53:53/udp"
-      - "10.253.1.8:67:67/udp"
-      - "10.253.1.8:80:80/tcp"
-      - "10.253.1.8:443:443/tcp"
+      - "${guest_host_IP}:53:53/tcp"
+      - "${guest_host_IP}:53:53/udp"
+      - "${guest_host_IP}:67:67/udp"
+      - "${guest_host_IP}:80:80/tcp"
+      - "${guest_host_IP}:443:443/tcp"
     environment:
       TZ: 'Europe/Stockholm'
       WEBPASSWORD: 'cloudflar3'
