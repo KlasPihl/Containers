@@ -1,0 +1,91 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_pihl_container1_name": {
+            "defaultValue": "pihl-container1",
+            "type": "String"
+        },
+        "disks_pihl_container1_OsDisk_1_46dc0c70f8a549239888701bb4117440_externalid": {
+            "defaultValue": "/subscriptions/8332bda4-0051-4602-9ab3-42fae7294d3d/resourceGroups/PIHL-PRIV-CONTAINERS/providers/Microsoft.Compute/disks/pihl-container1_OsDisk_1_46dc0c70f8a549239888701bb4117440",
+            "type": "String"
+        },
+        "networkInterfaces_pihl_container1649_externalid": {
+            "defaultValue": "/subscriptions/8332bda4-0051-4602-9ab3-42fae7294d3d/resourceGroups/pihl-priv-containers/providers/Microsoft.Network/networkInterfaces/pihl-container1649",
+            "type": "String"
+        },
+        "networkInterfaces_pihl_container1_guest_externalid": {
+            "defaultValue": "/subscriptions/8332bda4-0051-4602-9ab3-42fae7294d3d/resourceGroups/pihl-priv-containers/providers/Microsoft.Network/networkInterfaces/pihl-container1-guest",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2019-07-01",
+            "name": "[parameters('virtualMachines_pihl_container1_name')]",
+            "location": "westeurope",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B1ms"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "canonical",
+                        "offer": "0001-com-ubuntu-server-focal",
+                        "sku": "20_04-lts",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_pihl_container1_name'), '_OsDisk_1_46dc0c70f8a549239888701bb4117440')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS",
+                            "id": "[parameters('disks_pihl_container1_OsDisk_1_46dc0c70f8a549239888701bb4117440_externalid')]"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_pihl_container1_name')]",
+                    "adminUsername": "containeradmin",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": true,
+                        "ssh": {
+                            "publicKeys": [
+                                {
+                                    "path": "/home/containeradmin/.ssh/authorized_keys",
+                                    "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCYOzQ0O1uGXLYz/PzJ9ViZ9sUS\r\n7ThtIcVSFazjHViWEpFK5nB1TKjQ7nmuu7kB/7oSMz5EJGhL4ERcvbEVdTYawlM+\r\nIChFIH/eGmi0KFZ8QAtJleX5AghkQ3FDC6EH1/z37BbbmW6MXWI0yBHc7N1OiHCx\r\nTh5SjK/yEfcd9JGZgX2ObOPnfO+v10T/ABsXb0aZHHofrByhtnijN77xeqgQ5ZAl\r\nCj5RUiebyOOkFBuO90oIVKxGChUWnccGTUfEtgFLScDx0JsCqBsOIywUK9BLigi4\r\nnRCASd5bYORcez7ViNxG1ejs8exlKu398uNvvNQPHMinTfJ1oETou71BiRbpV/oU\r\n4l1dJ3kuygVZSeMk9VC789Viu+CKSkfXGksVR5C+/R2ieeQT0IKzr1fuMsrr9x3X\r\nshTz66GzZ2reflITtQP388NrrhaSnydH5iBhbxjPZwpD/Cue8M+pFEIO+Uq7iuAq\r\nbpbbmHoF4pBe/FxjUSTVuzZ1NbEHWpqu3gxlEOE= generated-by-azure\r\n"
+                                }
+                            ]
+                        },
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true,
+                    "requireGuestProvisionSignal": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_pihl_container1649_externalid')]",
+                            "properties": {
+                                "primary": true
+                            }
+                        },
+                        {
+                            "id": "[parameters('networkInterfaces_pihl_container1_guest_externalid')]",
+                            "properties": {
+                                "primary": false
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

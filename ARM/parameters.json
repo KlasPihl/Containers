@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_pihl_container1_name": {
+            "value": null
+        },
+        "disks_pihl_container1_OsDisk_1_46dc0c70f8a549239888701bb4117440_externalid": {
+            "value": null
+        },
+        "networkInterfaces_pihl_container1649_externalid": {
+            "value": null
+        },
+        "networkInterfaces_pihl_container1_guest_externalid": {
+            "value": null
+        }
+    }
+}
