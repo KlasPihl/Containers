@@ -14,7 +14,7 @@ services:
       - "${guest_host_IP}:443:443/tcp"
     environment:
       TZ: 'Europe/Stockholm'
-      WEBPASSWORD: 'cloudflar3'
+      WEBPASSWORD: '${password}'
     # Volumes store your data between container upgrades
     volumes:
        - './etc-pihole/:/etc/pihole/'

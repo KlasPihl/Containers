@@ -5,6 +5,7 @@ packages:
     - docker.io
     - docker-compose
     - azure-cli
+    - git
     #- powershell not supported on 20.04 (2020-07-20)
 
 # create the docker group
