@@ -29,6 +29,8 @@ services:
       DB_URI: mongodb://mongo/unifi
       STATDB_URI: mongodb://mongo/unifi_stat
       DB_NAME: unifi
+      JVM_INIT_HEAP_SIZE: 256M
+      JVM_MAX_HEAP_SIZE: 256M
     ports:
       - "3478:3478/udp" # STUN
       - "6789:6789/tcp" # Speed test

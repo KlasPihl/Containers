@@ -15,8 +15,6 @@ services:
     environment:
       TZ: 'Europe/Stockholm'
       WEBPASSWORD: '${password}'
-      JVM_INIT_HEAP_SIZE: 256M
-      JVM_MAX_HEAP_SIZE: 256M
     # Volumes store your data between container upgrades
     volumes:
        - './etc-pihole/:/etc/pihole/'
